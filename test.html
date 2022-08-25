@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<Button onclick="asyncOpenURL(Promise.resolve())">HERE</Button>
+<script>
+/**
+ * Prevents Safari from blocking pop-up window when opened within async call.
+ *
+ * @param {Promise} promise
+ */
+ function asyncOpenURL(promise) {
+    const windowRef = window.open();
+   promise
+        .then(() => {
+            windowRef.location.href = 'https://www.google.com'
+        })
+        .catch(() => windowRef.close());
+}
+</script>
+</body>
+</html>
